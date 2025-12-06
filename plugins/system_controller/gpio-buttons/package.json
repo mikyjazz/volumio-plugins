@@ -1,15 +1,15 @@
 {
-	"name": "gpio-buttons",
+	"name": "gpio-buttons-mod",
 	"version": "0.8.1",
 	"description": "GPIO button-listener plugin for Volumio2",
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
-	"author": "tomatpasser",
+	"author": "arkimedes",
 	"license": "ISC",
 	"volumio_info": {
-		"prettyName": "GPIO Buttons",
+		"prettyName": "GPIO Buttons Mod",
 		"icon": "fa-microchip",
 		"plugin_type": "system_controller",
 		"boot_priority": 10
