@@ -4,19 +4,24 @@
     "pin": {"value": 17,"type":"number"},
     "value": {"value": 0, "type": "number"}
   },
-  "volumeUp":{
+  "playStop":{
     "enabled": {"value": false, "type": "boolean"},
-    "pin": {"value": 18,"type":"number"},
+    "pin": {"value": 27,"type":"number"},
     "value": {"value": 0, "type": "number"}
   },
-  "volumeDown":{
+  "volumeUp":{
     "enabled": {"value": false, "type": "boolean"},
     "pin": {"value": 22,"type":"number"},
     "value": {"value": 0, "type": "number"}
   },
-  "previous":{
+  "volumeDown":{
     "enabled": {"value": false, "type": "boolean"},
     "pin": {"value": 23,"type":"number"},
+    "value": {"value": 0, "type": "number"}
+  },
+  "previous":{
+    "enabled": {"value": false, "type": "boolean"},
+    "pin": {"value": 25,"type":"number"},
     "value": {"value": 0, "type": "number"}
   },
   "next":{
@@ -26,7 +31,7 @@
   },
   "shutdown":{
     "enabled": {"value": false, "type": "boolean"},
-    "pin": {"value": 3,"type":"number"},
+    "pin": {"value": 13,"type":"number"},
     "value": {"value": 0, "type": "number"}
   }
 }
