@@ -25,7 +25,7 @@ GPIOButtons.prototype.onVolumioStart = function () {
 	this.config = new (require('v-conf'))();
 	this.config.loadFile(configFile);
 
-	self.logger.info("GPIO-Buttons initialized");
+	self.logger.info("GPIO-Buttons-Mod initialized");
 	
 	return libQ.resolve();	
 };
@@ -43,7 +43,7 @@ GPIOButtons.prototype.onStart = function () {
 
 	self.createTriggers()
 		.then (function (result) {
-			self.logger.info("GPIO-Buttons started");
+			self.logger.info("GPIO-Buttons-Mod started");
 			defer.resolve();
 		});
 	
@@ -57,7 +57,7 @@ GPIOButtons.prototype.onStop = function () {
 
 	self.clearTriggers()
 		.then (function (result) {
-			self.logger.info("GPIO-Buttons stopped");
+			self.logger.info("GPIO-Buttons-Mod stopped");
 			defer.resolve();
 		});
 	
@@ -102,7 +102,7 @@ GPIOButtons.prototype.getUIConfig = function () {
 	var defer = libQ.defer();
 	var self = this;
 
-	self.logger.info('GPIO-Buttons: Getting UI config');
+	self.logger.info('GPIO-Buttons-Mod: Getting UI config');
 
 	//Just for now..
 	var lang_code = 'en';
@@ -164,14 +164,14 @@ GPIOButtons.prototype.saveConfig = function(data)
 	self.clearTriggers()
 		.then(self.createTriggers());
 
-	self.commandRouter.pushToastMessage('success',"GPIO-Buttons", "Configuration saved");
+	self.commandRouter.pushToastMessage('success',"GPIO-Buttons-Mod", "Configuration saved");
 };
 
 
 GPIOButtons.prototype.createTriggers = function() {
 	var self = this;
 
-	self.logger.info('GPIO-Buttons: Reading config and creating triggers...');
+	self.logger.info('GPIO-Buttons-Mod: Reading config and creating triggers...');
 
 	actions.forEach(function(action, index, array) {
 		var c1 = action.concat('.enabled');
@@ -181,7 +181,7 @@ GPIOButtons.prototype.createTriggers = function() {
 		var pin = self.config.get(c2);
 
 		if(enabled === true){
-			self.logger.info('GPIO-Buttons: '+ action + ' on pin ' + pin);
+			self.logger.info('GPIO-Buttons-Mod: '+ action + ' on pin ' + pin);
 			var j = new Gpio(pin,'in','rising', {debounceTimeout: 250});
 			j.watch(self.listener.bind(self,action));
 			self.triggers.push(j);
@@ -196,7 +196,7 @@ GPIOButtons.prototype.clearTriggers = function () {
 	var self = this;
 	
 	self.triggers.forEach(function(trigger, index, array) {
-  		self.logger.info("GPIO-Buttons: Destroying trigger " + index);
+  		self.logger.info("GPIO-Buttons-Mod: Destroying trigger " + index);
 
 		trigger.unwatchAll();
 		trigger.unexport();		
@@ -218,7 +218,7 @@ GPIOButtons.prototype.listener = function(action,err,value){
 
 //Play / Pause
 GPIOButtons.prototype.playPause = function() {
-  //this.logger.info('GPIO-Buttons: Play/pause button pressed');
+  //this.logger.info('GPIO-Buttons-Mod: Play/pause button pressed');
   socket.emit('getState','');
   socket.once('pushState', function (state) {
     if(state.status=='play'){
@@ -233,7 +233,7 @@ GPIOButtons.prototype.playPause = function() {
 
 //Stop
 GPIOButtons.prototype.playStop = function() {
-  //this.logger.info('GPIO-Buttons: Stop button pressed');
+  //this.logger.info('GPIO-Buttons-Mod: Stop button pressed');
   socket.emit('getState','');
   socket.once('pushState', function (state) {
     if(state.status=='play' || state.status=='pause'){
@@ -250,24 +250,24 @@ GPIOButtons.prototype.next = function() {
 
 //previous on playlist
 GPIOButtons.prototype.previous = function() {
-  //this.logger.info('GPIO-Buttons: previous-button pressed');
+  //this.logger.info('GPIO-Buttons-Mod: previous-button pressed');
   socket.emit('prev')
 };
 
 //Volume up
 GPIOButtons.prototype.volumeUp = function() {
-  //this.logger.info('GPIO-Buttons: Vol+ button pressed');
+  //this.logger.info('GPIO-Buttons-Mod: Vol+ button pressed');
   socket.emit('volume','+');
 };
 
 //Volume down
 GPIOButtons.prototype.volumeDown = function() {
-  //this.logger.info('GPIO-Buttons: Vol- button pressed\n');
+  //this.logger.info('GPIO-Buttons-Mod: Vol- button pressed\n');
   socket.emit('volume','-');
 };
 
 //shutdown
 GPIOButtons.prototype.shutdown = function() {
-  // this.logger.info('GPIO-Buttons: shutdown button pressed\n');
+  // this.logger.info('GPIO-Buttons-Mod: shutdown button pressed\n');
   this.commandRouter.shutdown();
 };
