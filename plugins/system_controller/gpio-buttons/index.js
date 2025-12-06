@@ -232,7 +232,7 @@ GPIOButtons.prototype.playPause = function() {
 };
 
 //Stop
-GPIOButtons.prototype.playStio = function() {
+GPIOButtons.prototype.playStop = function() {
   //this.logger.info('GPIO-Buttons: Stop button pressed');
   socket.emit('getState','');
   socket.once('pushState', function (state) {
